@@ -122,6 +122,7 @@ sudo apt install -y zsh
 echo "-> Installed (1/3)."
 sudo apt install -y curl wget 2>/dev/null
 sudo apt install -y neofetch 2>/dev/null
+sudo apt install -y gh 2>/dev/null
 chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 echo "-> Installed (2/3)."
@@ -130,7 +131,7 @@ echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 echo "Installed (3/3)."
 sleep 1
 
-echo -e "${yellowColour}\n[+]Instructions:\n-> Logout and then reopen terminal (preferably kitty or use a nerd font in current terminal).\n-> Follow in-screen prompt instructions.\n-> Run ./install-part2.sh\n${endColour}.\n"
+echo -e "${yellowColour}\n[+]Instructions:\n-> Logout and then reopen terminal (preferably kitty or use a nerd font in current terminal).\n-> Follow in-screen prompt instructions.\n${endColour}.\n"
 sleep 5
 
 cat << "EOF"
