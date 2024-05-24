@@ -22,7 +22,7 @@ function ctrl_c(){
     exit 0
 }
 
-echo "Run install-root.sh with root privileges to apply config for root user."
+echo "Run install-root.sh with root privileges to apply config for root use (Not recommended / not finished)."
 
 echo -e "${yellowColour}\n[+]First Update your system to the latest version possible.${endColour}"
 read -p "y/n: " yn
@@ -79,6 +79,7 @@ cp -r ./kitty/* ~/.config/kitty/
 
 # BSPWM config
 echo -e "\n[+] Attempting to install ${greenColour}bspwm${endColour}...\n"
+sudo apt install -y bspwm
 cp -r ./bspwm/* ~/.config/bspwm/
 
 # SXHKD config
@@ -86,8 +87,7 @@ echo -e "\n[+] Attempting to install ${greenColour}sxhkd${endColour}...\n"
 cp -r ./sxhkd/* ~/.config/sxhkd/
 
 echo -e "${blueColour}[+]Installing some dependencies. (it may ask for sudo privileges)${endColour}"
-sleep 1
-
+sleep 2
 # install dependencies to avoid problems
 sudo apt install -y build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev
 # copy to other places for neovim/system
@@ -96,6 +96,32 @@ sudo apt install -y xclip xsel
 sudo apt install -y sxhkd
 # install picom dependencies
 sudo apt install -y libconfig-dev libdbus-1-dev libegl-dev libev-dev libgl-dev libepoxy-dev libpcre2-dev libpixman-1-dev libx11-xcb-dev libxcb1-dev libxcb-composite0-dev libxcb-damage0-dev libxcb-dpms0-dev libxcb-glx0-dev libxcb-image0-dev libxcb-present-dev libxcb-randr0-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-shape0-dev libxcb-util-dev libxcb-xfixes0-dev libxext-dev meson ninja-build uthash-dev
+
+# LIBCONFIG LATEST
+curl -LO https://hyperrealm.github.io/libconfig/dist/libconfig-1.7.3.tar.gz
+tar -xzf libconfig-1.7.3.tar.gz
+cd libconfig-1.7.3
+./configure
+make
+sudo make install
+cd ..
+
+# LIBEV LATEST
+curl -LO http://dist.schmorp.de/libev/Attic/libev-4.33.tar.gz
+tar -xzf libev-4.33.tar.gz
+cd libev-4.33
+./configure
+make
+sudo make install
+cd ..
+
+# NEOVIM
+sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+git clone https://github.com/neovim/neovim.git
+cd neovim
+make CMAKE_BUILD_TYPE=Release
+sudo make install
+cd ..
 
 # PICOM - compilation and installation
 echo -e "\n${blueColour}[+]Installing and configuring picom...\n${endColour}"
@@ -132,7 +158,7 @@ echo "Installed (3/3)."
 sleep 1
 
 echo -e "${yellowColour}\n[+]Instructions:\n-> Logout and then reopen terminal (preferably kitty or use a nerd font in current terminal).\n-> Follow in-screen prompt instructions.\n${endColour}.\n"
-sleep 5
+sleep 2 
 
 cat << "EOF"
        _,.
