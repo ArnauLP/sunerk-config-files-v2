@@ -90,7 +90,7 @@ echo -e "${blueColour}[+]Installing some dependencies. (it may ask for sudo priv
 sleep 2
 # install dependencies to avoid problems
 sudo apt install -y build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev
-# copy to other places for neovim/system
+
 sudo apt install -y xclip xsel
 # install bspwm & sxhkd
 sudo apt install -y sxhkd
@@ -160,6 +160,7 @@ sleep 1
 echo -e "${yellowColour}\n[+]Instructions:\n-> Logout and then reopen terminal (preferably kitty or use a nerd font in current terminal).\n-> Follow in-screen prompt instructions.\n${endColour}.\n"
 sleep 2 
 
+# finished
 cat << "EOF"
        _,.
      ,` -.)
